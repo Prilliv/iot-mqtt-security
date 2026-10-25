@@ -1,0 +1,33 @@
+services:
+  # ====================== ЗАВДАННЯ 1: Без захисту ======================
+  mqtt-insecure:
+    image: eclipse-mosquitto:2
+    container_name: mqtt-insecure
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./docker/mosquitto_insecure.conf:/mosquitto/config/mosquitto.conf:ro
+    profiles: ["insecure"]
+
+  # ====================== ЗАВДАННЯ 2: Тільки паролі ======================
+  mqtt-auth:
+    image: eclipse-mosquitto:2
+    container_name: mqtt-auth
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./docker/mosquitto_auth.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./docker/passwd:/mosquitto/config/passwd:ro
+    profiles: ["auth"]
+
+  # ====================== ЗАВДАННЯ 3: Паролі + TLS ======================
+  mqtt-tls:
+    image: eclipse-mosquitto:2
+    container_name: mqtt-tls
+    ports:
+      - "8883:8883"
+    volumes:
+      - ./docker/mosquitto_tls.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./docker/passwd:/mosquitto/config/passwd:ro
+      - ./docker/certs:/mosquitto/config/certs:ro
+    profiles: ["tls"]

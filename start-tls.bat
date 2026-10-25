@@ -1,0 +1,3 @@
+@echo off
+echo Starting MQTT broker with TLS (port 8883)...
+docker compose --profile tls up

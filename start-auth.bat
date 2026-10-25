@@ -1,0 +1,3 @@
+@echo off
+echo Starting MQTT broker with authentication (port 1883)...
+docker compose --profile auth up

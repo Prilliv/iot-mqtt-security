@@ -1,0 +1,3 @@
+@echo off
+echo Starting insecure MQTT broker (port 1883)...
+docker compose --profile insecure up
